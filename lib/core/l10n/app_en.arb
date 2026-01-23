@@ -1,0 +1,14 @@
+{
+  "email": "Enter your email",
+  "password": "Enter your password",
+  "rePassword": "Confirm your password",
+  "forgetPassword": "Forget Password",
+  "resetPassword": "Reset Password",
+  "login": "Login",
+  "dontHaveAnAccount": "Don’t Have Account ? ",
+  "createAccount": "Sign up",
+  "or": "Or",
+  "loginWithGoogle": "Login With Google",
+  "name": "Enter your Name",
+  "alreadyHaveAnAccount": "Already Have Account ? "
+}
