@@ -33,8 +33,15 @@ class $AssetsIconsGen {
   SvgGenImage get birthdayCake =>
       const SvgGenImage('assets/icons/birthday-cake.svg');
 
+  /// File path: assets/icons/book.svg
+  SvgGenImage get book => const SvgGenImage('assets/icons/book.svg');
+
   /// File path: assets/icons/bycle.svg
   SvgGenImage get bycle => const SvgGenImage('assets/icons/bycle.svg');
+
+  /// File path: assets/icons/calendar-add.svg
+  SvgGenImage get calendarAdd =>
+      const SvgGenImage('assets/icons/calendar-add.svg');
 
   /// File path: assets/icons/element-3.svg
   SvgGenImage get element3 => const SvgGenImage('assets/icons/element-3.svg');
@@ -75,7 +82,9 @@ class $AssetsIconsGen {
     activeHome,
     activeProfile,
     birthdayCake,
+    book,
     bycle,
+    calendarAdd,
     element3,
     eyeSlash,
     google,
@@ -96,6 +105,12 @@ class $AssetsImagesGen {
   AssetGenImage get birthday =>
       const AssetGenImage('assets/images/birthday.png');
 
+  /// File path: assets/images/cfbdd1ca3a3007acd532d6e292e2476f1bc5c86d.png
+  AssetGenImage get cfbdd1ca3a3007acd532d6e292e2476f1bc5c86d =>
+      const AssetGenImage(
+        'assets/images/cfbdd1ca3a3007acd532d6e292e2476f1bc5c86d.png',
+      );
+
   /// File path: assets/images/forget_password.png
   AssetGenImage get forgetPassword =>
       const AssetGenImage('assets/images/forget_password.png');
@@ -106,8 +121,22 @@ class $AssetsImagesGen {
   /// File path: assets/images/logo.png
   AssetGenImage get logo => const AssetGenImage('assets/images/logo.png');
 
+  /// File path: assets/images/meeting.png
+  AssetGenImage get meeting => const AssetGenImage('assets/images/meeting.png');
+
+  /// File path: assets/images/sport.png
+  AssetGenImage get sport => const AssetGenImage('assets/images/sport.png');
+
   /// List of all assets
-  List<AssetGenImage> get values => [birthday, forgetPassword, google, logo];
+  List<AssetGenImage> get values => [
+    birthday,
+    cfbdd1ca3a3007acd532d6e292e2476f1bc5c86d,
+    forgetPassword,
+    google,
+    logo,
+    meeting,
+    sport,
+  ];
 }
 
 class $AssetsTranslationsGen {

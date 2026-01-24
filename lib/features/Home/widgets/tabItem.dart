@@ -6,7 +6,7 @@ import '../../../core/gen/assets.gen.dart';
 
 class TabItem extends StatelessWidget {
   final String text;
-  final SvgPicture icon;
+  final Widget icon;
   const TabItem({super.key, required this.text, required this.icon});
 
   @override

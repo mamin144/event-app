@@ -7,8 +7,9 @@ class CustomTextFormField extends StatefulWidget {
   final String hintText;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
-  final bool? isPassword;
+  final bool isPassword;
   final String? Function(String?)? validator;
+  final int maxLines;
 
   const CustomTextFormField({
     super.key,
@@ -16,8 +17,10 @@ class CustomTextFormField extends StatefulWidget {
     required this.hintText,
     this.prefixIcon,
     this.suffixIcon,
-    this.isPassword,
-    this.validator
+    this.isPassword = false,
+    this.validator,
+    this.maxLines = 0,
+
   });
 
   @override
@@ -31,13 +34,14 @@ class _CustomTextFormField extends State<CustomTextFormField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+   maxLines: widget.maxLines == 0 ? null : widget.maxLines,
       controller: widget.controller,
       validator: widget.validator,
       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-        color: Appcolors.secText,        // لون الكلام
-        fontSize: 16,                     // حجم الخط
-        fontWeight: FontWeight.w500,      // سمك الخط
-        fontFamily: 'Poppins',           // نوع الخط (اختياري)
+        color: Appcolors.secText,
+        fontSize: 16,
+        fontWeight: FontWeight.w500,
+        fontFamily: 'Poppins',
       ),
       autovalidateMode: AutovalidateMode.always,
       obscureText: widget.isPassword! ? obscureText : false,
@@ -58,7 +62,7 @@ class _CustomTextFormField extends State<CustomTextFormField> {
         )
             : null,
         // contentPadding: EdgeInsets.all(20),
-        hintText: widget.hintText,
+        hintText: widget.hintText ?? '',
         hintStyle: Theme
             .of(context)
             .textTheme

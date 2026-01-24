@@ -1,4 +1,5 @@
 import 'package:event/core/routes/route_name.dart';
+import 'package:event/features/add_event/view/add_event_view.dart';
 import 'package:event/features/layout/view/layout_view.dart';
 import 'package:event/features/signup/view/signup.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +21,8 @@ abstract class AppRouter{
          return MaterialPageRoute(builder: (context) => ForgetPassword());
       case RouteName.layout:
         return MaterialPageRoute(builder: (context) => LayoutView());
+      case RouteName.addEvent:
+        return MaterialPageRoute(builder: (context) => AddEventView());
 
       default:
         return MaterialPageRoute(builder: (context) => SplashView());
