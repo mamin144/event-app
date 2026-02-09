@@ -43,7 +43,7 @@ class _CustomTextFormField extends State<CustomTextFormField> {
         fontWeight: FontWeight.w500,
         fontFamily: 'Poppins',
       ),
-      autovalidateMode: AutovalidateMode.always,
+      // autovalidateMode: AutovalidateMode.always,
       obscureText: widget.isPassword! ? obscureText : false,
       decoration: InputDecoration(
 

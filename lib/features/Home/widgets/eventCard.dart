@@ -6,6 +6,7 @@ import '../../../core/gen/assets.gen.dart';
 class EventCard extends StatelessWidget {
   final String date;
   final String title;
+  final String description;
   final String imagePath;
   final bool isFavorite;
   final VoidCallback? onFavoriteTap;
@@ -15,7 +16,8 @@ class EventCard extends StatelessWidget {
     required this.date,
     required this.title,
     required this.imagePath,
-    this.isFavorite = false,
+    required this.description,
+   required this.isFavorite ,
     this.onFavoriteTap,
   });
 
@@ -34,7 +36,7 @@ class EventCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(16),
               border:Border.all(color: Appcolors.stroke),
           image: DecorationImage(
-              image: AssetImage(Assets.images.birthday.path),
+              image: AssetImage(imagePath),
             fit: BoxFit.cover
             ),
           ),
@@ -57,7 +59,7 @@ class EventCard extends StatelessWidget {
 
                   // width: double.infinity,
                   child: Text(
-                    '01 jan',
+                    date,
                     style: theme.textTheme.bodyMedium?.copyWith(
                       color: Appcolors.primary,
                     ),
@@ -77,7 +79,7 @@ class EventCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'This is a Birthday Party ',
+                      description,
                       style: theme.textTheme.bodyLarge?.copyWith(
                         fontWeight: FontWeight.w500,
                         fontSize: 14,
@@ -85,7 +87,10 @@ class EventCard extends StatelessWidget {
                         fontFamily: 'Poppins',
                       ),
                     ),
-                    Assets.icons.inActiveFavorite.svg()
+                    GestureDetector(
+                        onTap: onFavoriteTap,
+                        child: isFavorite ?Assets.icons.activeFavorite.svg()
+                            :Assets.icons.inActiveFavorite.svg())
                   ],
                 ),
               ),

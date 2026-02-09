@@ -1,23 +1,21 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:event/core/utils/FireStore/firestore_utils.dart';
-import 'package:event/features/Home/widgets/tabItem.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import '../../../core/color/AppColors.dart';
 import '../../../core/gen/assets.gen.dart';
 import '../../../core/models/category_model/category_model.dart';
 import '../../../core/models/fireBase_model/add_event_model.dart';
-import '../widgets/eventCard.dart';
+import '../../../core/utils/FireStore/firestore_utils.dart';
+import '../../Home/widgets/eventCard.dart';
+import '../../Home/widgets/tabItem.dart';
 
-class HomeView extends StatefulWidget {
-  const HomeView({super.key});
+class FavoriteView extends StatefulWidget {
+   const FavoriteView({super.key});
 
   @override
-  State<HomeView> createState() => _HomeViewState();
+  State<FavoriteView> createState() => _FavoriteViewState();
 }
 
-class _HomeViewState extends State<HomeView> {
+class _FavoriteViewState extends State<FavoriteView> {
   List<CategoryModel> categories = [
     CategoryModel(
       id: 'bookClub',
@@ -44,20 +42,13 @@ class _HomeViewState extends State<HomeView> {
       imagePath: Assets.images.meeting.path,
     ),
   ];
-  int _currentIndex = 0;
-  late bool _isFavoriteList;
 
-  @override
-  void initState() {
-    super.initState();
-    // Initialize the list to hold favorite state for each card (assuming 10 cards)
-    _isFavoriteList = false;
-  }
+  int _currentIndex = 1;
+
+  late bool _isFavorite;
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -78,11 +69,11 @@ class _HomeViewState extends State<HomeView> {
                 tabs: categories
                     .map(
                       (category) => TabItem(
-                        categoryModel: category,
-                        isSelected:
-                            _currentIndex == categories.indexOf(category),
-                      ),
-                    )
+                    categoryModel: category,
+                    isSelected:
+                    _currentIndex == categories.indexOf(category),
+                  ),
+                )
                     .toList(),
 
                 onTap: (index) {
@@ -94,7 +85,7 @@ class _HomeViewState extends State<HomeView> {
             ),
             SizedBox(height: 16),
             StreamBuilder(
-              stream: FirestoreUtils.getStreamFromFirestore(categories[_currentIndex].id),
+              stream: FirestoreUtils.getFavoriteEventsStream(categories[_currentIndex].id),
               builder: (context, snapshot) {
                 if(snapshot.connectionState == ConnectionState.waiting){
                   return Center(child: CircularProgressIndicator());
@@ -105,6 +96,8 @@ class _HomeViewState extends State<HomeView> {
                 if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
                   return Center(child: Text('No events found.'));
                 }
+
+
 
                 // Data is ready, return the ListView
                 return Expanded(

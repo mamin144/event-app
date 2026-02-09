@@ -2,6 +2,7 @@ import 'package:event/core/color/AppColors.dart';
 import 'package:event/core/gen/assets.gen.dart';
 import 'package:event/core/routes/route_name.dart';
 import 'package:event/features/Home/view/homeView.dart';
+import 'package:event/features/favourite/view/favorite_view.dart';
 import 'package:event/features/login/ui/login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bounceable/flutter_bounceable.dart';
@@ -14,7 +15,7 @@ class LayoutView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> screens = [HomeView(), HomeView(), HomeView()];
+    List<Widget> screens = [HomeView(), FavoriteView(), HomeView()];
     final theme = Theme.of(context);
     final appSettingProvider = Provider.of<AppSettingProvider>(context);
     return Scaffold(
@@ -73,7 +74,7 @@ class LayoutView extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: Appcolors.primary,
                       borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: Appcolors.stroke, width: 2),
+                      // border: Border.all(color: Appcolors.stroke, width: 2),
                     ),
                     child: Text(
                       appSettingProvider.currentLanguage.toUpperCase(),

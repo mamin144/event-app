@@ -3,6 +3,8 @@ import 'package:event/features/add_event/view/add_event_view.dart';
 import 'package:event/features/layout/view/layout_view.dart';
 import 'package:event/features/signup/view/signup.dart';
 import 'package:flutter/material.dart';
+import '../../features/Home/view/homeView.dart';
+import '../../features/favourite/view/favorite_view.dart';
 import '../../features/forget_password/view/Forget_Password.dart';
 import '../../features/login/ui/login.dart';
 import '../../features/splash/splash_view.dart';
@@ -23,6 +25,11 @@ abstract class AppRouter{
         return MaterialPageRoute(builder: (context) => LayoutView());
       case RouteName.addEvent:
         return MaterialPageRoute(builder: (context) => AddEventView());
+        case RouteName.home:
+        return MaterialPageRoute(builder: (context) => HomeView());
+        case RouteName.favorite:
+        return MaterialPageRoute(builder: (context) => FavoriteView());
+
 
       default:
         return MaterialPageRoute(builder: (context) => SplashView());

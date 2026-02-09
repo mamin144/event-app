@@ -5,6 +5,9 @@ abstract class RouteName{
   static  const String forgetPassword = '/ForgetPassword';
   static  const String layout = '/layoutView';
   static  const String addEvent = '/addEvent';
+  static  const String home = '/home';
+  static  const String favorite = '/favorite';
+
 
 
 
