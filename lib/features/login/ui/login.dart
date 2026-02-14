@@ -5,7 +5,9 @@ import 'package:event/core/widgets/textFormField.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bounceable/flutter_bounceable.dart';
+import 'package:provider/provider.dart';
 import '../../../core/gen/assets.gen.dart';
+import '../../signup/provideres/auth_provider.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -17,7 +19,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   final emailController = TextEditingController(text: 'mahmoud@gmail.com');
-  final passwordController = TextEditingController(text: 'Mahmouda14');
+  final passwordController = TextEditingController(text: 'Mahmoud14');
 
   // @override
   // void dispose() {
@@ -140,12 +142,26 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               SizedBox(height: 35),
               CustomElevatedButton(
-                onPressed: () {
+                onPressed: () async {
                   if (_formKey.currentState!.validate()) {
+                    final authProvider = context.read<AuthProvider>();
 
-                    Navigator.pushNamed(context, RouteName.layout);
+                    await authProvider.login(
+                      email: emailController.text.trim(),
+                      password: passwordController.text.trim(),
+                    );
+
+                    if (authProvider.errorMessage == null) {
+                      Navigator.pushReplacementNamed(context, RouteName.layout,);
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text(authProvider.errorMessage!)),
+                      );
+                    }
                   }
+
                 },
+
                 text: 'login'.tr(),
               ),
               SizedBox(height: 35),

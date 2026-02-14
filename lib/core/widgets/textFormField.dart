@@ -10,6 +10,7 @@ class CustomTextFormField extends StatefulWidget {
   final bool isPassword;
   final String? Function(String?)? validator;
   final int maxLines;
+  final bool? enabled;
 
   const CustomTextFormField({
     super.key,
@@ -20,6 +21,7 @@ class CustomTextFormField extends StatefulWidget {
     this.isPassword = false,
     this.validator,
     this.maxLines = 0,
+    this.enabled = true,
 
   });
 
@@ -34,10 +36,15 @@ class _CustomTextFormField extends State<CustomTextFormField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-   maxLines: widget.maxLines == 0 ? null : widget.maxLines,
+      enabled: widget.enabled,
+      maxLines: widget.maxLines == 0 ? null : widget.maxLines,
       controller: widget.controller,
       validator: widget.validator,
-      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+      style: Theme
+          .of(context)
+          .textTheme
+          .bodyMedium
+          ?.copyWith(
         color: Appcolors.secText,
         fontSize: 16,
         fontWeight: FontWeight.w500,
@@ -72,7 +79,11 @@ class _CustomTextFormField extends State<CustomTextFormField> {
           fontWeight: FontWeight.w500,
           fontSize: 14,
         ),
-        counterStyle: Theme.of(context).textTheme.labelLarge?.copyWith(
+        counterStyle: Theme
+            .of(context)
+            .textTheme
+            .labelLarge
+            ?.copyWith(
           color: Appcolors.secText,),
 
         fillColor: Appcolors.white,

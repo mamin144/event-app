@@ -9,14 +9,18 @@ import 'package:flutter_bounceable/flutter_bounceable.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/providers/appSettingProvider.dart';
+import '../../profile/profile_View.dart';
+import '../../signup/provideres/auth_provider.dart';
 
 class LayoutView extends StatelessWidget {
   const LayoutView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> screens = [HomeView(), FavoriteView(), HomeView()];
+    List<Widget> screens = [HomeView(), FavoriteView(), ProfileView()];
     final theme = Theme.of(context);
+    final authProvider = context.watch<AuthProvider>();
+
     final appSettingProvider = Provider.of<AppSettingProvider>(context);
     return Scaffold(
       floatingActionButton: FloatingActionButton(
@@ -74,7 +78,7 @@ class LayoutView extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: Appcolors.primary,
                       borderRadius: BorderRadius.circular(8),
-                      // border: Border.all(color: Appcolors.stroke, width: 2),
+                      border: Border.all(color: Appcolors.stroke, width: 2),
                     ),
                     child: Text(
                       appSettingProvider.currentLanguage.toUpperCase(),
@@ -90,7 +94,7 @@ class LayoutView extends StatelessWidget {
               ],
             ),
             Text(
-              'John Safwat',
+              authProvider.userName,
               style: theme.textTheme.bodyLarge?.copyWith(
                 fontSize: 20,
                 fontWeight: FontWeight.w500,

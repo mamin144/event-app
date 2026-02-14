@@ -18,33 +18,59 @@ class FirestoreUtils {
     event.eventId = doc.id;
     await doc.set(event);
   }
+
   static Future<AddEventModel?> getEvent() async {
     final doc = getEventCollection().doc();
     final event = await doc.get();
     return event.data();
   }
-   static Stream<QuerySnapshot<AddEventModel>> getStreamFromFirestore(String catecoryId) {
-    var collectionRef = getEventCollection().where( 'categoryId', isEqualTo: catecoryId);
+
+  static Stream<QuerySnapshot<AddEventModel>> getStreamFromFirestore(
+    String catecoryId,
+  ) {
+    var collectionRef = getEventCollection().where(
+      'categoryId',
+      isEqualTo: catecoryId,
+    );
     return collectionRef.snapshots();
+  }
 
-   }
-
-   static Future<void> updateEvent(String eventId, Map<String, dynamic> data) async {
+  static Future<void> updateEvent(
+    String eventId,
+    Map<String, dynamic> data,
+  ) async {
     final doc = getEventCollection().doc(eventId);
     await doc.update(data);
+  }
+  static Future<void>deleteEvent(String eventId) async {
+    final doc = getEventCollection().doc(eventId);
+    await doc.delete();
 
-   }
+  }
 
-  static Stream<QuerySnapshot<AddEventModel>> getFavoriteEventsStream(String? categoryId) {
-    var collectionRef = getEventCollection()
-        .where('isFavorite', isEqualTo: true);
+  static Stream<QuerySnapshot<AddEventModel>> getFavoriteEventsStream(
+    String? categoryId,
+  ) {
+    var collectionRef = getEventCollection().where(
+      'isFavorite',
+      isEqualTo: true,
+    );
 
     if (categoryId != null) {
-        collectionRef = collectionRef.where('categoryId', isEqualTo: categoryId);
+      collectionRef = collectionRef.where('categoryId', isEqualTo: categoryId);
     }
 
     return collectionRef.snapshots();
   }
 
+
+
+  static Future<DocumentSnapshot<AddEventModel>> viewInDetails(
+    String eventId,
+  ) async {
+    final doc = getEventCollection().doc(eventId);
+    final event = await doc.get();
+    return event;
+  }
 
 }

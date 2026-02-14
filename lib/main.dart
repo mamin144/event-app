@@ -8,14 +8,14 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'core/theme/theme.dart';
+import 'features/signup/provideres/auth_provider.dart';
 import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
-   await Firebase.initializeApp(
-     options: DefaultFirebaseOptions.currentPlatform,
-   );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await Firebase.initializeApp();
 
   runApp(
     EasyLocalization(
@@ -23,7 +23,13 @@ void main() async {
       path: 'assets/translations',
       fallbackLocale: const Locale('ar'),
       startLocale: const Locale('ar'),
-      child:  ChangeNotifierProvider(create:(context) => AppSettingProvider(),child: MyApp(), ),
+      child: MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (_) => AppSettingProvider()),
+          ChangeNotifierProvider(create: (_) => AuthProvider()),
+        ],
+        child: const MyApp(),
+      ),
     ),
   );
 }
@@ -44,7 +50,7 @@ class MyApp extends StatelessWidget {
     }
 
     return DevicePreview(
-      builder:(context) =>  MaterialApp(
+      builder: (context) => MaterialApp(
         useInheritedMediaQuery: true,
 
         theme: ThemeManger.getLightTheme(),

@@ -17,6 +17,9 @@ import 'package:vector_graphics/vector_graphics.dart' as _vg;
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/Edit_icn.svg
+  SvgGenImage get editIcn => const SvgGenImage('assets/icons/Edit_icn.svg');
+
   /// File path: assets/icons/active_favorite.svg
   SvgGenImage get activeFavorite =>
       const SvgGenImage('assets/icons/active_favorite.svg');
@@ -42,6 +45,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/calendar-add.svg
   SvgGenImage get calendarAdd =>
       const SvgGenImage('assets/icons/calendar-add.svg');
+
+  /// File path: assets/icons/delete.svg
+  SvgGenImage get delete => const SvgGenImage('assets/icons/delete.svg');
 
   /// File path: assets/icons/element-3.svg
   SvgGenImage get element3 => const SvgGenImage('assets/icons/element-3.svg');
@@ -78,6 +84,7 @@ class $AssetsIconsGen {
 
   /// List of all assets
   List<SvgGenImage> get values => [
+    editIcn,
     activeFavorite,
     activeHome,
     activeProfile,
@@ -85,6 +92,7 @@ class $AssetsIconsGen {
     book,
     bycle,
     calendarAdd,
+    delete,
     element3,
     eyeSlash,
     google,
@@ -127,6 +135,22 @@ class $AssetsImagesGen {
   /// File path: assets/images/sport.png
   AssetGenImage get sport => const AssetGenImage('assets/images/sport.png');
 
+  /// File path: assets/images/theme_1_img.png
+  AssetGenImage get theme1Img =>
+      const AssetGenImage('assets/images/theme_1_img.png');
+
+  /// File path: assets/images/theme_2_img.png
+  AssetGenImage get theme2Img =>
+      const AssetGenImage('assets/images/theme_2_img.png');
+
+  /// File path: assets/images/theme_3_img.png
+  AssetGenImage get theme3Img =>
+      const AssetGenImage('assets/images/theme_3_img.png');
+
+  /// File path: assets/images/theme_view_img.png
+  AssetGenImage get themeViewImg =>
+      const AssetGenImage('assets/images/theme_view_img.png');
+
   /// List of all assets
   List<AssetGenImage> get values => [
     birthday,
@@ -136,6 +160,10 @@ class $AssetsImagesGen {
     logo,
     meeting,
     sport,
+    theme1Img,
+    theme2Img,
+    theme3Img,
+    themeViewImg,
   ];
 }
 

@@ -4,12 +4,14 @@ import 'package:flutter/material.dart';
 import '../../../core/gen/assets.gen.dart';
 import '../../../core/models/category_model/category_model.dart';
 import '../../../core/models/fireBase_model/add_event_model.dart';
+import '../../../core/routes/route_name.dart';
 import '../../../core/utils/FireStore/firestore_utils.dart';
 import '../../Home/widgets/eventCard.dart';
 import '../../Home/widgets/tabItem.dart';
+import '../../view_Details/view/View_Details.dart';
 
 class FavoriteView extends StatefulWidget {
-   const FavoriteView({super.key});
+  const FavoriteView({super.key});
 
   @override
   State<FavoriteView> createState() => _FavoriteViewState();
@@ -69,11 +71,11 @@ class _FavoriteViewState extends State<FavoriteView> {
                 tabs: categories
                     .map(
                       (category) => TabItem(
-                    categoryModel: category,
-                    isSelected:
-                    _currentIndex == categories.indexOf(category),
-                  ),
-                )
+                        categoryModel: category,
+                        isSelected:
+                            _currentIndex == categories.indexOf(category),
+                      ),
+                    )
                     .toList(),
 
                 onTap: (index) {
@@ -85,19 +87,19 @@ class _FavoriteViewState extends State<FavoriteView> {
             ),
             SizedBox(height: 16),
             StreamBuilder(
-              stream: FirestoreUtils.getFavoriteEventsStream(categories[_currentIndex].id),
+              stream: FirestoreUtils.getFavoriteEventsStream(
+                categories[_currentIndex].id,
+              ),
               builder: (context, snapshot) {
-                if(snapshot.connectionState == ConnectionState.waiting){
+                if (snapshot.connectionState == ConnectionState.waiting) {
                   return Center(child: CircularProgressIndicator());
                 }
-                if (snapshot.hasError){
+                if (snapshot.hasError) {
                   return Center(child: Text('Error: ${snapshot.error}'));
                 }
                 if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
                   return Center(child: Text('No events found.'));
                 }
-
-
 
                 // Data is ready, return the ListView
                 return Expanded(
@@ -120,7 +122,16 @@ class _FavoriteViewState extends State<FavoriteView> {
                         isFavorite: event.isFavorite,
                         onFavoriteTap: () {
                           print(event.imagePath);
-                          FirestoreUtils.updateEvent(eventId, {'isFavorite': !event.isFavorite});
+                          FirestoreUtils.updateEvent(eventId, {
+                            'isFavorite': !event.isFavorite,
+                          });
+                        },
+                        onTap: () {
+                          Navigator.pushNamed(
+                            context,
+                            RouteName.viewDetails,
+                            arguments: eventId,
+                          );
                         },
                       );
                     },

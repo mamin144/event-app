@@ -7,6 +7,12 @@ abstract class RouteName{
   static  const String addEvent = '/addEvent';
   static  const String home = '/home';
   static  const String favorite = '/favorite';
+  static  const String viewDetails = '/viewDetails';
+  static  const String editEvent = '/editEvent';
+  static  const String theme = '/theme';
+  static  const String onBoarding = '/onBoarding';
+
+
 
 
 

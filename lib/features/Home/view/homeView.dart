@@ -8,6 +8,8 @@ import '../../../core/color/AppColors.dart';
 import '../../../core/gen/assets.gen.dart';
 import '../../../core/models/category_model/category_model.dart';
 import '../../../core/models/fireBase_model/add_event_model.dart';
+import '../../../core/routes/route_name.dart';
+import '../../view_Details/view/View_Details.dart';
 import '../widgets/eventCard.dart';
 
 class HomeView extends StatefulWidget {
@@ -128,6 +130,15 @@ class _HomeViewState extends State<HomeView> {
                         onFavoriteTap: () {
                           print(event.imagePath);
                           FirestoreUtils.updateEvent(eventId, {'isFavorite': !event.isFavorite});
+                        },
+                        onTap: () {
+                          Navigator.pushNamed(
+                            context,
+                            RouteName.viewDetails,
+                            arguments: eventId,
+                          );
+                          print(eventId);
+
                         },
                       );
                     },

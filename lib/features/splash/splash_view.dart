@@ -19,7 +19,7 @@ class _SplashViewState extends State<SplashView> {
     setState(() {
       Future.delayed(
         Duration(seconds: 2),
-        () => Navigator.pushReplacementNamed(context, RouteName.login),
+        () => Navigator.pushReplacementNamed(context, RouteName.theme),
       );
     });
   }
